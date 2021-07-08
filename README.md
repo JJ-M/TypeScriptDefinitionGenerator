@@ -1,9 +1,9 @@
 # TypeScript Definition Generator
 
 ## NOTE: This is a customed redistribute
-The orginal repo wrote by @madskristensen, @snys98, and @denis-peshkov **best regards to them**!
+The orginal repo wrote by @madskristensen, @snys98, @denis-peshkov and @lukeowlclaw **best regards to them**!
 
-[Installation file (version 2.2.5.0)](https://raw.githubusercontent.com/LukeOwlclaw/TypeScriptDefinitionGenerator/master/TypeScriptDefinitionGenerator-2.2.5.0.vsix)
+[Installation file (version 2.2.5.0)](https://raw.githubusercontent.com/JJ-M/TypeScriptDefinitionGenerator/master/TypeScriptDefinitionGenerator-2.2.5.0.vsix)
 
 ---------------------------------------
 
@@ -102,8 +102,3 @@ Configure this extension from the **Tools -> Options -> Text Editor -> JavaScrip
 Check out the [contribution guidelines](.github/CONTRIBUTING.md)
 if you want to contribute to this project.
 
-For cloning and building this project yourself, make sure
-to install the
-[Extensibility Tools 2015](https://visualstudiogallery.msdn.microsoft.com/ab39a092-1343-46e2-b0f1-6a3f91155aa6)
-extension for Visual Studio which enables some features
-used by this project.

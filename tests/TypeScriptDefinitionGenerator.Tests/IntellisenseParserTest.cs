@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using EnvDTE;
-using EnvDTE80;
 using NUnit.Framework;
 
 //using Microsoft.Extensions.Options;
@@ -27,11 +26,11 @@ namespace TypeScriptDefinitionGenerator.Tests
         public void HowToUseCodeModelSpike()
         {
             // get the DTE reference...
-            DTE2 dte2 = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
+            DTE dte = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
 
             // get the solution
             var worker = new SolutionWorker();
-            worker.ExamineSolution(dte2.Solution);
+            worker.ExamineSolution(dte.Solution);
         }
 
         [Test]
@@ -41,12 +40,12 @@ namespace TypeScriptDefinitionGenerator.Tests
             // Test for testing custom CS code. Just copy code to TestTestClass.cs and run this test. Check output written to tsFile manually.
 
             // get the DTE reference...
-            DTE2 dte2 = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
+            DTE dte = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
             
             var worker = new SolutionWorker();
-            worker.ExamineSolution(dte2.Solution);
+            worker.ExamineSolution(dte.Solution);
 
-            ProjectItem item = worker.GetProjectItem(dte2.Solution, "TestTestClass.cs");
+            ProjectItem item = worker.GetProjectItem(dte.Solution, "TestTestClass.cs");
 
             if (item == null) { throw new System.ArgumentNullException(nameof(item), "TestTestClass.cs not found in solution. Close all other instances of Visual Studio!"); }
 
@@ -83,13 +82,13 @@ namespace TypeScriptDefinitionGenerator.Tests
             //Arrange
 
             // get the DTE reference...
-            DTE2 dte2 = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
+            DTE dte = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
 
 
             var worker = new SolutionWorker();
-            worker.ExamineSolution(dte2.Solution);
+            worker.ExamineSolution(dte.Solution);
 
-            ProjectItem item = worker.GetProjectItem(dte2.Solution, "Class1.cs");
+            ProjectItem item = worker.GetProjectItem(dte.Solution, "Class1.cs");
 
             if (item == null) { throw new System.ArgumentNullException(nameof(item), "Class1.cs not found in solution. Close all other instances of Visual Studio!"); }
 
@@ -186,13 +185,13 @@ namespace TypeScriptDefinitionGenerator.Tests
             //Arrange
 
             // get the DTE reference...
-            DTE2 dte2 = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
+            DTE dte = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
 
 
             var worker = new SolutionWorker();
-            worker.ExamineSolution(dte2.Solution);
+            worker.ExamineSolution(dte.Solution);
 
-            ProjectItem item = worker.GetProjectItem(dte2.Solution, "SomeClass.cs");
+            ProjectItem item = worker.GetProjectItem(dte.Solution, "SomeClass.cs");
 
             var expectedFile =
                 "// ------------------------------------------------------------------------------\n" +
@@ -270,10 +269,10 @@ namespace TypeScriptDefinitionGenerator.Tests
         public void CheckGenerateTypeScriptOutput()
         {
             // get the DTE reference...
-            DTE2 dte2 = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
+            DTE dte = SolutionWorker.GetVisualStudioInstanceOfTypeScriptDefinitionGenerator();
 
             var worker = new SolutionWorker();
-            worker.ExamineSolution(dte2.Solution);
+            worker.ExamineSolution(dte.Solution);
 
             var testFiles = new System.Collections.Generic.Dictionary<string, string>
             {
@@ -362,7 +361,7 @@ namespace TypeScriptDefinitionGenerator.Tests
             {
                 var testFileName = testFile.Key;
                 var expectedFile = testFile.Value;
-                ProjectItem item = worker.GetProjectItem(dte2.Solution, testFileName);
+                ProjectItem item = worker.GetProjectItem(dte.Solution, testFileName);
                 
                 Assert.NotNull(item, $"Could not find {testFileName}");
 

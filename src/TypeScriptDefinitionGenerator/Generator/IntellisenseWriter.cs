@@ -54,7 +54,7 @@ namespace TypeScriptDefinitionGenerator
 
                     if (io.IsEnum)
                     {
-                        string type = "enum ";
+                        string type = "const enum ";
                         sbBody.Append(prefixModule).Append(export).Append(type).Append(Utility.CamelCaseClassName(io.Name)).Append(" ");
                         if (!Options.DeclareModule) { exports.Add(Utility.CamelCaseClassName(io.Name)); }
 
@@ -150,9 +150,9 @@ namespace TypeScriptDefinitionGenerator
                     }
                     else
                     {
-                    sb.AppendLine($"import {{ {b} }} from \"./{b}.generated\";");
-                    imports.Add(b);
-                }
+                        sb.AppendLine($"import {{ {b} }} from \"./{b}.generated\";");
+                        imports.Add(b);
+                    }
                 }
 
                 var notImportedNeededImports = neededImports.Except(imports).Except(exports).ToList();

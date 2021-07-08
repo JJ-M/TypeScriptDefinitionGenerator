@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 using EnvDTE;
-using EnvDTE80;
 
 namespace TypeScriptDefinitionGenerator.Tests
 {
@@ -14,7 +10,7 @@ namespace TypeScriptDefinitionGenerator.Tests
     {
         private const string PhysicalFolder_guid = "{6BB5F8EF-4483-11D3-8BCF-00C04F8EC28C}";
 
-        private static IEnumerable<DTE2> GetVisualStudioInstances()
+        private static IEnumerable<DTE> GetVisualStudioInstances()
         {
             IRunningObjectTable rot;
             IEnumMoniker enumMoniker;
@@ -38,14 +34,14 @@ namespace TypeScriptDefinitionGenerator.Tests
                     {
                         object obj;
                         rot.GetObject(moniker[0], out obj);
-                        var dte = obj as DTE2;
+                        var dte = obj as DTE;
                         yield return dte;
                     }
                 }
             }
         }
 
-        internal static DTE2 GetVisualStudioInstanceOfTypeScriptDefinitionGenerator()
+        internal static DTE GetVisualStudioInstanceOfTypeScriptDefinitionGenerator()
         {
             int retryCount = 5;
             do
@@ -64,7 +60,7 @@ namespace TypeScriptDefinitionGenerator.Tests
             } while (retryCount > 0);
             throw new Exception("unreachable code");
         }
-        internal static DTE2 GetVisualStudioInstanceOfTypeScriptDefinitionGeneratorInternal()
+        internal static DTE GetVisualStudioInstanceOfTypeScriptDefinitionGeneratorInternal()
         {
             var allDte2s = GetVisualStudioInstances();
             foreach (var dte2 in allDte2s)
@@ -187,7 +183,7 @@ namespace TypeScriptDefinitionGenerator.Tests
         // examine an item
         private void ExamineItem(ProjectItem item)
         {
-            FileCodeModel2 model = (FileCodeModel2)item.FileCodeModel;
+            FileCodeModel model = (FileCodeModel)item.FileCodeModel;
             foreach (CodeElement codeElement in model.CodeElements)
             {
                 ExamineCodeElement(codeElement, 3);
@@ -223,21 +219,21 @@ namespace TypeScriptDefinitionGenerator.Tests
         private void AddClassToNamespace(CodeNamespace ns)
         {
             // add a class
-            CodeClass2 chess = (CodeClass2)ns.AddClass("Chess", -1, null, null, vsCMAccess.vsCMAccessPublic);
+            CodeClass chess = (CodeClass)ns.AddClass("Chess", -1, null, null, vsCMAccess.vsCMAccessPublic);
 
             // add a function with a parameter and a comment
-            CodeFunction2 move = (CodeFunction2)chess.AddFunction("Move", vsCMFunction.vsCMFunctionFunction, "int", -1, vsCMAccess.vsCMAccessPublic, null);
+            CodeFunction move = (CodeFunction)chess.AddFunction("Move", vsCMFunction.vsCMFunctionFunction, "int", -1, vsCMAccess.vsCMAccessPublic, null);
             move.AddParameter("IsOK", "bool", -1);
             move.Comment = "This is the move function";
 
             // add some text to the body of the function
-            EditPoint2 editPoint = (EditPoint2)move.GetStartPoint(vsCMPart.vsCMPartBody).CreateEditPoint();
+            EditPoint editPoint = (EditPoint)move.GetStartPoint(vsCMPart.vsCMPartBody).CreateEditPoint();
             editPoint.Indent(null, 0);
             editPoint.Insert("int a = 1;");
-            editPoint.InsertNewLine(1);
+            editPoint.Insert(Environment.NewLine);
             editPoint.Indent(null, 3);
             editPoint.Insert("int b = 3;");
-            editPoint.InsertNewLine(2);
+            editPoint.Insert(Environment.NewLine);
             editPoint.Indent(null, 3);
             editPoint.Insert("return a + b; //");
         }

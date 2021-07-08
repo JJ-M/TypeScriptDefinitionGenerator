@@ -23,7 +23,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TypeScriptDefinitionGenerator</RootNamespace>
     <AssemblyName>TypeScriptDefinitionGenerator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
@@ -47,6 +47,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CopyVsixExtensionFiles>True</CopyVsixExtensionFiles>
+    <CopyVsixExtensionLocation>\\storage2\FILES\Applications\Development\Visual Studio TypeScript Generator Extension</CopyVsixExtensionLocation>
+    <DeployExtension>False</DeployExtension>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />

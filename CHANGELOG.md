@@ -7,6 +7,13 @@
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 2.2.6
+- [x] Enums now translated to "const enum" and not "public enum" so values are substituted and not positions
+- [x] Upgraded to target ASP.NET Framework 4.8
+- [x] Added the data type "dynamic" so it translates to "any" rather than blank
+
+## Forked by JJ-M
+
 ## 2.2.0
 - [x] Removed useless files
 - [x] Refactoring / code optimizing

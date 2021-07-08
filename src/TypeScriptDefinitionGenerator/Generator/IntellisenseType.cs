@@ -75,6 +75,8 @@ namespace TypeScriptDefinitionGenerator
                 case "bool":
                 case "boolean":
                     return js ? "Boolean" : "boolean";
+                case "dynamic":
+                    return js ? "Any" : "any";
             }
             return js ? "Object" : GetComplexTypeScriptName();
         }
